@@ -37,8 +37,8 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Build Go engine (gomobile)
         run: |
-          export ANDROID_NDK_HOME="$ANDROID_NDK_LATEST_HOME"
-          ./scripts/build-go.sh
+          chmod +x ./scripts/*.sh ./gradlew || true
+          bash ./scripts/build-go.sh
       # The release key exists only as repo secrets: pull requests from forks build with the debug key.
       - name: Release signing key
         env:
