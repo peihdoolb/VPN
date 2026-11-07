@@ -16,6 +16,9 @@ android {
         targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
+        ndk {
+            abiFilters += listOf("arm64-v8a")
+        }
     }
 
     // Releases are signed with the net-merge key when CI has it (ANDROID_KEYSTORE, from the repo's
@@ -35,9 +38,9 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            // Phones only (no emulator x86 code), which keeps the download about a third smaller.
             ndk {
-                abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+                abiFilters.clear()
+                abiFilters += listOf("arm64-v8a")
             }
             signingConfig = signingConfigs.getByName(if (releaseKey != null) "release" else "debug")
         }

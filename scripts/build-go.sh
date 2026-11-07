@@ -14,7 +14,7 @@ echo "Using ANDROID_NDK_HOME=$ANDROID_NDK_HOME"
 # gomobile and gobind at the versions pinned in go.mod.
 GOBIN="$PWD/.bin" go install golang.org/x/mobile/cmd/gomobile golang.org/x/mobile/cmd/gobind
 export PATH="$PWD/.bin:$PATH"
-targets="${GOMOBILE_TARGETS:-android/arm64,android/arm,android/amd64}"
+targets="${GOMOBILE_TARGETS:-android/arm64}"
 mkdir -p ../app/libs
 gomobile bind -v -trimpath -ldflags="-s -w" \
   -target="$targets" -androidapi 26 \
